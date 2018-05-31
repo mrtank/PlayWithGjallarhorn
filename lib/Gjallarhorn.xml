@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Gjallarhorn</name></assembly>
+<members>
+<member name="M:Gjallarhorn.IAsyncMutatable`1.UpdateAsync(Microsoft.FSharp.Core.FSharpFunc{`0,`0})">
+<summary>
+ Asynchronously update the current value in a manner that guarantees proper execution, 
+ given a function that takes the current value and generates a new value,
+ and then returns the new value asynchronously
+ &lt;remarks&gt;The function may be executed multiple times, depending on the implementation.&lt;/remarks&gt;
+</summary>
+</member>
+<member name="M:Gjallarhorn.IAsyncMutatable`1.SetAsync(`0)">
+<summary>
+ Asynchronously set the value contained within this mutable
+</summary>
+</member>
+<member name="M:Gjallarhorn.IAsyncMutatable`1.GetAsync">
+<summary>
+ Asynchronously get the value contained within this mutable
+</summary>
+</member>
+<member name="T:Gjallarhorn.IAsyncMutatable`1">
+<summary>
+ Interface for mutable types that have asynchronous support atomic update functionality
+</summary>
+</member>
+<member name="M:Gjallarhorn.IAtomicMutatable`1.Update(Microsoft.FSharp.Core.FSharpFunc{`0,`0})">
+<summary>
+ Updates the current value in a manner that guarantees proper execution, 
+ given a function that takes the current value and generates a new value,
+ and then returns the new value
+ &lt;remarks&gt;The function may be executed multiple times, depending on the implementation.&lt;/remarks&gt;
+</summary>
+</member>
+<member name="T:Gjallarhorn.IAtomicMutatable`1">
+<summary>
+ Interface for mutable types that have atomic update functionality
+</summary>
+</member>
+<member name="P:Gjallarhorn.IMutatable`1.Value(`0)">
+<summary>
+ The current value of the type
+</summary>
+</member>
+<member name="P:Gjallarhorn.IMutatable`1.Value">
+<summary>
+ The current value of the type
+</summary>
+</member>
+<member name="T:Gjallarhorn.IMutatable`1">
+<summary>
+ Core interface for all mutatable types
+</summary>
+</member>
+<member name="P:Gjallarhorn.ISignal`1.Value">
+<summary>
+ The current value of the type
+</summary>
+</member>
+<member name="T:Gjallarhorn.ISignal`1">
+<summary>
+ Core interface for signals
+ &lt;remarks&gt;
+ All signals must also inherit Internal.IDependent and Internal.ITracksDependents.
+ &lt;/remarks&gt;
+</summary>
+</member>
+<member name="P:Gjallarhorn.IValidatedSignal`2.ValidationResult">
+<summary>
+ The current validation status
+</summary>
+</member>
+<member name="P:Gjallarhorn.IValidatedSignal`2.RawInput">
+<summary>
+ The raw, unvalidated input
+</summary>
+</member>
+<member name="P:Gjallarhorn.IValidatedSignal`2.IsValid">
+<summary>
+ Check to see if type is currently in a valid state
+</summary>
+</member>
+<member name="T:Gjallarhorn.IValidatedSignal`2">
+<summary>
+ The output of validating an input signal
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationResult.Invalid">
+<summary>
+ Value is invalid with a list of error messages
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationResult.Valid">
+<summary>
+ Value is valid
+</summary>
+</member>
+<member name="P:Gjallarhorn.ValidationResult.IsValidResult">
+<summary>
+ Check to see if we&apos;re in a valid state
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationResult.ToList(System.Boolean)">
+<summary>
+ Convert to a list of strings. If forceOutput is true, the list will have a single, empty
+ string in valid cases 
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationResult">
+<summary>
+ Defines a validation result
+</summary>
+</member>
+<member name="P:Gjallarhorn.AtomicMutable`1.Value(`0)">
+<summary>
+ Gets and sets the Value contained within this mutable
+</summary>
+</member>
+<member name="P:Gjallarhorn.AtomicMutable`1.Value">
+<summary>
+ Gets and sets the Value contained within this mutable
+</summary>
+</member>
+<member name="M:Gjallarhorn.AtomicMutable`1.Update(Microsoft.FSharp.Core.FSharpFunc{`0,`0})">
+<summary>
+ Updates the current value in a manner that guarantees proper execution, 
+ given a function that takes the current value and generates a new value,
+ and then returns the new value
+ &lt;remarks&gt;The function may be executed multiple times, depending on the implementation.&lt;/remarks&gt;
+</summary>
+</member>
+<member name="T:Gjallarhorn.AtomicMutable`1">
+<summary>
+ A thread-safe wrapper using interlock for a mutable value with change notification
+</summary>
+</member>
+<member name="M:Gjallarhorn.AsyncMutable`1.UpdateAsync(Microsoft.FSharp.Core.FSharpFunc{`0,`0})">
+<summary>
+ Perform an update on the current state asynchronously
+</summary>
+</member>
+<member name="M:Gjallarhorn.AsyncMutable`1.Update(Microsoft.FSharp.Core.FSharpFunc{`0,`0})">
+<summary>
+ Perform an update on the current state
+</summary>
+</member>
+<member name="M:Gjallarhorn.AsyncMutable`1.SetAsync(`0)">
+<summary>
+ Set the state to a new value asynchronously
+</summary>
+</member>
+<member name="M:Gjallarhorn.AsyncMutable`1.Set(`0)">
+<summary>
+ Set the state to a new value synchronously
+</summary>
+</member>
+<member name="M:Gjallarhorn.AsyncMutable`1.GetAsync">
+<summary>
+ Get the current state asynchronously
+</summary>
+</member>
+<member name="M:Gjallarhorn.AsyncMutable`1.Get">
+<summary>
+ Get the current state synchronously
+</summary>
+</member>
+<member name="T:Gjallarhorn.AsyncMutable`1">
+<summary>
+ Type which manages state internally using a mailbox
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule.ValidationCollector`1.Invalid">
+<summary>
+ Validation in an invalid state
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule.ValidationCollector`1.Valid">
+<summary>
+ Validation in a valid state 
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule.ValidationCollector`1">
+<summary>
+ Defines the Validation as being in one of three possible states
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule.InvalidValidationStatus.Completed">
+<summary>
+ Message collecting is complete
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule.InvalidValidationStatus.CollectingMessages">
+<summary>
+ More messages are being collected
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule.InvalidValidationStatus">
+<summary>
+ Used to track the status of invalid validations
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.resultWithError``1(System.String,Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Produces a result of the validation, using a custom error message if an error occurred
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.result``1(Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Extracts the resulting errors from an invalid validation, or an empty list for success
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.isValid(Gjallarhorn.ValidationResult)">
+<summary>
+ Check to see if a result is in a valid state
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.customConverter``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpChoice{``1,System.String}},``1,Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Create a custom converter validator using a function (&apos;a -&gt; Choice&lt;&apos;b,string&gt;) and default value on conversion failure. Choice2of2 indicates a failure error message. The error message can use {0} for a placeholder for the property name.  Conversions always stop collecting on failure.
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.validateWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{System.String}},Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Create a custom validator using a custom function (&apos;a -&gt; string option) . The error message can use {0} for a placeholder for the property value. None indicates success.
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.fixErrorsWithMessage``1(System.String,Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Fix the current state of errors, bypassing all future validation checks if we&apos;re in an error state
+ Also supplies a custom error message to replace the existing
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.fixErrors``1(Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Fix the current state of errors, bypassing all future validation checks if we&apos;re in an error state
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.validate``1(``0)">
+<summary>
+ Begin a validation chain for a given property
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.Converters.stringToDoubleC(System.Globalization.NumberStyles,System.IFormatProvider,Gjallarhorn.ValidationModule.ValidationCollector{System.String})">
+<summary>
+ Convert from a string to a double specifying culture information
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.Converters.stringToDouble(Gjallarhorn.ValidationModule.ValidationCollector{System.String})">
+<summary>
+ Convert from a string to a 64bit float
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.Converters.stringToInt32(Gjallarhorn.ValidationModule.ValidationCollector{System.String})">
+<summary>
+ Convert from a string to an integer
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.Converters.stringToInt32C(System.Globalization.NumberStyles,System.IFormatProvider,Gjallarhorn.ValidationModule.ValidationCollector{System.String})">
+<summary>
+ Convert from a string to an integer specifying culture information
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.Converters.fromTo``2(Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Convert between any two types, using System.Convert.ChangeType
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.Converters.toString``1(Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ Convert to a string representation using Object.ToString()
+</summary>
+</member>
+<member name="M:Gjallarhorn.ValidationModule.Converters.toSelf``1(Gjallarhorn.ValidationModule.ValidationCollector{``0})">
+<summary>
+ An &quot;id&quot; style conversion which does nothing
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule.Converters">
+<summary>
+ Library of validation converters which can be used to convert value representations as part of the validation process
+</summary>
+</member>
+<member name="T:Gjallarhorn.ValidationModule">
+<summary>
+ Basic validation support
+</summary>
+</member>
+<member name="P:Gjallarhorn.Internal.IDependent.HasDependencies">
+<summary>
+ Queries whether other dependencies are registered to this dependent
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.IDependent.UpdateDirtyFlag(System.Object)">
+<summary>
+ Signals the type that it should refresh its current value as one of it&apos;s dependencies has been updated
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.IDependent">
+<summary>
+ A type which depends on a signal
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.ITracksDependents.Untrack(Gjallarhorn.Internal.IDependent)">
+<summary>
+ Ends tracking of a dependent
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.ITracksDependents.Track(Gjallarhorn.Internal.IDependent)">
+<summary>
+ Begins tracking of a dependent
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.ITracksDependents">
+<summary>
+ Interface that allows a type to remotely add itself as a dependent
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalManager.Signal``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Signals all dependencies tracked on a given source
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalManager.RemoveDependency``1(Gjallarhorn.ISignal{``0},Gjallarhorn.Internal.IDependent)">
+<summary>
+ Removes a dependency tracked on a given source
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalManager.RemoveAllDependencies``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Removes all dependencies tracked on a given source
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalManager.IsTracked``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Returns true if a given source has dependencies
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalManager.AddDependency``1(Gjallarhorn.ISignal{``0},Gjallarhorn.Internal.IDependent)">
+<summary>
+ Adds dependency tracked on a given source
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.SignalManager">
+ <summary>Manager of all dependency tracking.  Handles signaling of IDependent instances from any given source</summary>
+ <remarks>This class is fully thread safe, and will not hold references to either source or dependent targets</remarks>
+</member>
+<member name="P:Gjallarhorn.Internal.DependencyTracker`1.HasDependencies">
+<summary>
+ determines whether there are currently any dependencies on this object
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.DependencyTracker`1.RemoveAll``1(``0)">
+<summary>
+ Removes a dependency from the tracker, and returns true if there are still dependencies remaining
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.DependencyTracker`1.Remove``1(Gjallarhorn.Internal.IDependent,``0)">
+<summary>
+ Removes a dependency from the tracker, and returns true if there are still dependencies remaining
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.DependencyTracker`1.MarkDirty(Gjallarhorn.ISignal{`0})">
+<summary>
+ Signals the dependencies with a given source, and returns true if there are still dependencies remaining
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.DependencyTracker`1.Add``1(Gjallarhorn.Internal.IDependent,``0)">
+<summary>
+ Adds a new dependency to the tracker
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.DependencyTracker`1">
+ <summary>Used to track dependencies</summary>
+ <remarks>This class is fully thread safe, and will not hold references to dependent targets</remarks>
+</member>
+<member name="P:Gjallarhorn.Internal.IDependencyManager`1.HasDependencies">
+<summary>
+ Determines whether there are dependencies currently being managed
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.IDependencyManager`1.Subscribe(System.IObserver{`0},Gjallarhorn.ISignal{`0})">
+<summary>
+ Add a dependent observer to this signal explicitly
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.IDependencyManager`1.RemoveAll(Gjallarhorn.ISignal{`0})">
+<summary>
+ Remove all dependencies from this signal
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.IDependencyManager`1.Remove(Gjallarhorn.Internal.IDependent,Gjallarhorn.ISignal{`0})">
+<summary>
+ Remove a dependent from this signal explicitly
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.IDependencyManager`1.MarkDirty(Gjallarhorn.ISignal{`0})">
+<summary>
+ Signal to all dependents that we&apos;re dirty
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.IDependencyManager`1.Add(Gjallarhorn.Internal.IDependent,Gjallarhorn.ISignal{`0})">
+<summary>
+ Add a dependent to the source signal explicitly
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.IDependencyManager`1">
+<summary>
+ Type used to track dependencies
+</summary>
+</member>
+<member name="P:Gjallarhorn.Internal.ObservableToSignal`1.Value">
+<summary>
+ Gets the current value
+</summary>
+</member>
+<member name="P:Gjallarhorn.Internal.ObservableToSignal`1.HasDependencies">
+<summary>
+ Default implementations work off single set of dependenices
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.ObservableToSignal`1.Signal">
+<summary>
+ Signals to dependencies that we have updated
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.ObservableToSignal`1.RequestRefresh``1(``0)">
+<summary>
+ Notifies us that we need to refresh our value
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.ObservableToSignal`1">
+<summary>
+ Type to wrap in observable into a signal.
+</summary>
+</member>
+<member name="P:Gjallarhorn.Internal.SignalBase`1.Value">
+<summary>
+ Gets the current value
+</summary>
+</member>
+<member name="P:Gjallarhorn.Internal.SignalBase`1.HasDependencies">
+<summary>
+ Default implementations work off single set of dependenices
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalBase`1.UpdateAndGetCurrentValue(System.Boolean)">
+<summary>
+ Update and fetch the current value.  Implementers should only update if we&apos;re dirty.
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalBase`1.OnDisposing">
+<summary>
+ Called during the disposable process
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalBase`1.MarkDirtyGuarded(System.Object)">
+<summary>
+ Signals to dependencies that we have updated
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.SignalBase`1.MarkDirty(System.Object)">
+<summary>
+ Notifies us that we need to refresh our value
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.SignalBase`1">
+<summary>
+ Base class which simplifies implementation of standard signals
+</summary>
+</member>
+<member name="P:Gjallarhorn.Internal.Mutable`1.Value(`0)">
+<summary>
+ Gets and sets the Value contained within this mutable
+</summary>
+</member>
+<member name="P:Gjallarhorn.Internal.Mutable`1.Value">
+<summary>
+ Gets and sets the Value contained within this mutable
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.Mutable`1">
+<summary>
+ A lightweight wrapper for a mutable value which provides a mechanism for change notification as needed
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.Dependencies.createRemote``2(Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a dependency manager for a source object which stores dependency information outside of the object&apos;s memory space.  
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.Dependencies.create``2(Gjallarhorn.Internal.ITracksDependents[],``0)">
+<summary>
+ Create a dependency manager
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.Dependencies">
+<summary>
+ Module used to create and manage dependencies
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.WeakRef.contains``1(``0,System.WeakReference{``0})">
+<summary>
+ See if a specific target is contained by a weak reference
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.WeakRef.test``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.WeakReference{``0})">
+<summary>
+ Return true if a weak reference is still alive
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.WeakRef.execute``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},System.WeakReference{``0})">
+<summary>
+ Execute a function on the contained value within a weak reference
+</summary>
+</member>
+<member name="M:Gjallarhorn.Internal.WeakRef.toOption``1(System.WeakReference{``0})">
+<summary>
+ Convert the WeakReference to an option
+</summary>
+</member>
+<member name="T:Gjallarhorn.Internal.WeakRef">
+<summary>
+ Helper module for dealing with weak references
+</summary>
+</member>
+<member name="M:Gjallarhorn.Helpers.IdleTracker.GetExecutionHandle">
+<summary>
+ Gets an execution handle, which makes this as executing until the handle is disposed.
+ Mutiple execution handles can be pulled simultaneously
+</summary>
+</member>
+<member name="T:Gjallarhorn.Helpers.IdleTracker">
+<summary>
+ Type which tracks execution, used for tracked async operations
+ Acts as a ISignal&amp;lt;bool&amp;gt; with value of true when idle, false when executing
+</summary>
+</member>
+<member name="M:Gjallarhorn.Helpers.CompositeDisposable.Remove(System.IDisposable)">
+<summary>
+ Remove a disposable from this tracker without disposing of it
+</summary>
+</member>
+<member name="M:Gjallarhorn.Helpers.CompositeDisposable.System-IDisposable-Dispose">
+<summary>
+ Dispose all of our tracked disposables and remove them all 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Helpers.CompositeDisposable.Dispose">
+<summary>
+ Dispose all of our tracked disposables and remove them all 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Helpers.CompositeDisposable.Add(System.IDisposable)">
+<summary>
+ Add a new disposable to this tracker
+</summary>
+</member>
+<member name="T:Gjallarhorn.Helpers.CompositeDisposable">
+<summary>
+ Type which allows tracking of multiple disposables at once
+</summary>
+</member>
+<member name="M:Gjallarhorn.Helpers.ICompositeDisposable.Remove(System.IDisposable)">
+<summary>
+ Remove an idisposable to this composite disposable
+</summary>
+</member>
+<member name="M:Gjallarhorn.Helpers.ICompositeDisposable.Add(System.IDisposable)">
+<summary>
+ Add an idisposable to this composite disposable
+</summary>
+</member>
+<member name="T:Gjallarhorn.Helpers.ICompositeDisposable">
+<summary>
+ A disposable type that manages multiple other disposables, and disposes all of them when disposed
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.validate``2(Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``1}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Validates a signal with a validation chain
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.observeOn``1(System.Threading.SynchronizationContext,Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates a signal that schedules on a synchronization context
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.either(Gjallarhorn.ISignal{System.Boolean},Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Creates a signal on two bools that is true if either input is true
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.both(Gjallarhorn.ISignal{System.Boolean},Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Creates a signal on two bools that is true if both inputs are true
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.not(Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Creates a signal over a bool value that negates the input
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.notEqual``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates a signal on two values that is true if both inputs are not equal
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.equal``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates a signal on two values that is true if both inputs are equal
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.merge``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``0})">
+<summary>
+ Merges two signals into a single signal.  The value from the second signal is used as the initial value of the result
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.choose``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},``1,Gjallarhorn.ISignal{``0})">
+<summary>
+ Returns a signal which is the projection of the input signal using the given function. All observations which return Some
+ get mapped into the new value.  The defaultValue is used if the input signal&apos;s value returns None in the projection
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.filterBy``1(Gjallarhorn.ISignal{System.Boolean},``0,Gjallarhorn.ISignal{``0})">
+<summary>
+ Filters the signal by using a separate bool signal
+ If the condition&apos;s Value is initially false, the resulting signal begins with the provided defaultValue.
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.filter``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},``0,Gjallarhorn.ISignal{``0})">
+<summary>
+ Filters the signal, so only values matching the predicate are cached and propogated onwards. 
+ If the provider&apos;s value doesn&apos;t match the predicate, the resulting signal begins with the provided defaultValue.
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapFunction``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Maps a function from a signal containing a function, where the value is fetched on execution
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.toFunction``2(Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpFunc{``0,``1}})">
+<summary>
+ Creates a function from a signal containing a function, where the value is fetched on execution
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption10``11(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,Microsoft.FSharp.Core.FSharpFunc{``7,Microsoft.FSharp.Core.FSharpFunc{``8,Microsoft.FSharp.Core.FSharpFunc{``9,``10}}}}}}}}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``3}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``4}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``5}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``6}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``7}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``8}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``9}})">
+<summary>
+ Combines ten signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption9``10(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,Microsoft.FSharp.Core.FSharpFunc{``7,Microsoft.FSharp.Core.FSharpFunc{``8,``9}}}}}}}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``3}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``4}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``5}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``6}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``7}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``8}})">
+<summary>
+ Combines nine signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption8``9(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,Microsoft.FSharp.Core.FSharpFunc{``7,``8}}}}}}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``3}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``4}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``5}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``6}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``7}})">
+<summary>
+ Combines eight signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption7``8(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,``7}}}}}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``3}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``4}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``5}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``6}})">
+<summary>
+ Combines seven signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption6``7(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,``6}}}}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``3}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``4}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``5}})">
+<summary>
+ Combines six signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption5``6(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,``5}}}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``3}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``4}})">
+<summary>
+ Combines five signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption4``5(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,``4}}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``3}})">
+<summary>
+ Combines four signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption3``4(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,``3}}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``2}})">
+<summary>
+ Combines three signals of options using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapOption2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``0}},Gjallarhorn.ISignal{Microsoft.FSharp.Core.FSharpOption{``1}})">
+<summary>
+ Combines two signals of options, such as validation results, 
+ using a specified mapping function
+ If either is None, the result is None
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map10``11(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,Microsoft.FSharp.Core.FSharpFunc{``7,Microsoft.FSharp.Core.FSharpFunc{``8,Microsoft.FSharp.Core.FSharpFunc{``9,``10}}}}}}}}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6},Gjallarhorn.ISignal{``7},Gjallarhorn.ISignal{``8},Gjallarhorn.ISignal{``9})">
+<summary>
+ Combines ten signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map9``10(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,Microsoft.FSharp.Core.FSharpFunc{``7,Microsoft.FSharp.Core.FSharpFunc{``8,``9}}}}}}}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6},Gjallarhorn.ISignal{``7},Gjallarhorn.ISignal{``8})">
+<summary>
+ Combines nine signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map8``9(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,Microsoft.FSharp.Core.FSharpFunc{``7,``8}}}}}}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6},Gjallarhorn.ISignal{``7})">
+<summary>
+ Combines eight signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map7``8(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,Microsoft.FSharp.Core.FSharpFunc{``6,``7}}}}}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6})">
+<summary>
+ Combines seven signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map6``7(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,Microsoft.FSharp.Core.FSharpFunc{``5,``6}}}}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5})">
+<summary>
+ Combines six signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map5``6(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,Microsoft.FSharp.Core.FSharpFunc{``4,``5}}}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4})">
+<summary>
+ Combines five signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map4``5(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``3,``4}}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3})">
+<summary>
+ Combines four signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map3``4(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,``3}}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2})">
+<summary>
+ Combines three signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1})">
+<summary>
+ Combines two signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapAsyncTracked``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},``1,Gjallarhorn.Helpers.IdleTracker,Gjallarhorn.ISignal{``0})">
+<summary>
+ Transforms a signal value asynchronously by using a specified mapping function. Execution status is reported through the specified IdleTracker
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.mapAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},``1,Gjallarhorn.ISignal{``0})">
+<summary>
+ Transforms a signal value asynchronously by using a specified mapping function.
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Gjallarhorn.ISignal{``0})">
+<summary>
+ Transforms a signal value by using a specified mapping function.
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.iter``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},Gjallarhorn.ISignal{``0})">
+<summary>
+ Executes a function for a signal value.
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.get``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Gets the current value associated with the signal
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.fromObservable``1(``0,System.IObservable{``0})">
+<summary>
+ Create a signal from an observable.  As an ISignal always provides a value, the initial value to use upon creation is required.    
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.cache``1(Gjallarhorn.ISignal{``0})">
+ <summary>Create a cached signal over a provider</summary>
+ <remarks>
+ This will not hold a reference to the provider, and will allow it to be garbage collected.
+ As such, it caches the "last valid" state of the signal locally.
+ </remarks>
+</member>
+<member name="M:Gjallarhorn.SignalModule.constant``1(``0)">
+<summary>
+ Create a signal over a constant, immutable value
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.Subscription.copyStep``2(Gjallarhorn.IMutatable{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},Gjallarhorn.ISignal{``1})">
+<summary>
+ Create a subscription to the changes of a signal which copies its value upon change into a mutable via a stepping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.Subscription.copyTo``1(Gjallarhorn.IMutatable{``0},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a subscription to the changes of a signal which copies its value upon change into a mutable
+</summary>
+</member>
+<member name="M:Gjallarhorn.SignalModule.Subscription.create``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a subscription to the changes of a signal which calls the provided function upon each change
+</summary>
+</member>
+<member name="T:Gjallarhorn.SignalModule">
+<summary>
+ Provides mechanisms for working with signals
+</summary>
+</member>
+<member name="M:Gjallarhorn.MutableModule.step``1(Microsoft.FSharp.Core.FSharpFunc{``0,``0},Gjallarhorn.IMutatable{``0})">
+<summary>
+ Updates the value associated with the mutatable object via a function that takes the original value
+</summary>
+</member>
+<member name="M:Gjallarhorn.MutableModule.set``1(Gjallarhorn.IMutatable{``0},``0)">
+<summary>
+ Sets the value associated with the mutatable object
+</summary>
+</member>
+<member name="M:Gjallarhorn.MutableModule.get``1(Gjallarhorn.IMutatable{``0})">
+<summary>
+ Gets the value associated with the mutatable object
+</summary>
+</member>
+<member name="M:Gjallarhorn.MutableModule.createAsync``1(``0)">
+<summary>
+ Create an asynchronous mutable variable wrapping an initial value
+</summary>
+</member>
+<member name="M:Gjallarhorn.MutableModule.createThreadsafe``1(``0)">
+<summary>
+ Create a threadsafe mutable variable wrapping an initial value
+</summary>
+</member>
+<member name="M:Gjallarhorn.MutableModule.create``1(``0)">
+<summary>
+ Create a mutable variable wrapping an initial value
+</summary>
+</member>
+<member name="T:Gjallarhorn.MutableModule">
+<summary>
+ Manages creation of mutable variables
+</summary>
+</member>
+<member name="M:Gjallarhorn.ObservableModule.mapAsyncTracked``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},Gjallarhorn.Helpers.IdleTracker,System.IObservable{``0})">
+<summary>
+ Maps the input observable through an async workflow. Execution status is reported through the specified IdleTracker.
+</summary>
+</member>
+<member name="M:Gjallarhorn.ObservableModule.mapAsync``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},System.IObservable{``0})">
+<summary>
+ Maps the input observable through an async workflow.
+</summary>
+</member>
+<member name="M:Gjallarhorn.ObservableModule.toMessage``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},System.IObservable{Microsoft.FSharp.Core.FSharpOption{``0}})">
+<summary>
+ Converts an observable stream of options into a message type when valid
+</summary>
+</member>
+<member name="M:Gjallarhorn.ObservableModule.filterSome``1(System.IObservable{Microsoft.FSharp.Core.FSharpOption{``0}})">
+<summary>
+ Filters out observables of options to only pass through
+ &quot;Some&quot; values
+</summary>
+</member>
+<member name="M:Gjallarhorn.ObservableModule.filterBy``1(Gjallarhorn.ISignal{System.Boolean},System.IObservable{``0})">
+<summary>
+ Filters the input observable by using a separate bool signal. The value of the signal is used as the filtering predicate
+</summary>
+</member>
+<member name="M:Gjallarhorn.ObservableModule.Subscription.copyTo``1(Gjallarhorn.IMutatable{``0},System.IObservable{``0})">
+<summary>
+ Create a subscription to an observable which copies its value upon change into a mutable
+</summary>
+</member>
+<member name="T:Gjallarhorn.ObservableModule">
+<summary>
+ Additional functions related to Observable for use with Gjallarhorn
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.MutatableInOut`2">
+<summary>
+ Used as an input and output mapping which mutates an input IMutatable, with validation to report and fetch data from a user
+</summary>
+</member>
+<member name="P:Gjallarhorn.Interaction.ValidatedOut`2.Output">
+<summary>
+ The validated output data from the user interaction
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.ValidatedOut`2">
+<summary>
+ Used as an output mapping with validation to fetch data from a user
+</summary>
+</member>
+<member name="P:Gjallarhorn.Interaction.Out`1.UpdateStream">
+<summary>
+ Signal used as a notification mechanism for reporting
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.Out`1.SetValue(`0)">
+<summary>
+ Updates the value to the output stream
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.Out`1.GetValue">
+<summary>
+ Gets the current value
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.Out`1">
+<summary>
+ Used as an output mapping to fetch data from a user
+</summary>
+</member>
+<member name="P:Gjallarhorn.Interaction.ValidatedInOut`3.Output">
+<summary>
+ The validated output data from the user interaction
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.ValidatedInOut`3">
+<summary>
+ Used as an input and output mapping with validation to report and fetch data from a user
+</summary>
+</member>
+<member name="P:Gjallarhorn.Interaction.InOut`2.UpdateStream">
+<summary>
+ Signal used as a notification mechanism for reporting
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.InOut`2.SetValue(`1)">
+<summary>
+ Updates the value to the output stream
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.InOut`2.GetValue">
+<summary>
+ Gets the current value
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.InOut`2">
+<summary>
+ Used as an input and output mapping to report and fetch data from a user
+</summary>
+</member>
+<member name="P:Gjallarhorn.Interaction.ValidatedReport`2.Validation">
+<summary>
+ The validation results as a signal
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.ValidatedReport`2">
+<summary>
+ Used to report data to a user with validation
+</summary>
+</member>
+<member name="P:Gjallarhorn.Interaction.Report`2.UpdateStream">
+<summary>
+ Signal used as a notification mechanism. 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.Report`2.GetValue">
+<summary>
+ Gets the current value
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.Report`2">
+<summary>
+ Used to report data to a user
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.Direct`1.GetValue">
+<summary>
+ Gets the signal
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.Direct`1">
+<summary>
+ Used to directly map a signal to a user. No notification exists in this case.
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.Validation`2">
+<summary>
+ A single step in a validation chain
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.MutableInOut.convertedValidated``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``1},Gjallarhorn.ValidationModule.ValidationCollector{``0}},Gjallarhorn.IMutatable{``0})">
+<summary>
+ Create a simple input handle which pipes from the signal to conversion, user, validates to output, writes back to mutable
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.MutableInOut.validated``1(Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``0}},Gjallarhorn.IMutatable{``0})">
+<summary>
+ Create a simple input handle which pipes from the signal to user, validates to output, writes back to mutable
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.IOModule.MutableInOut">
+<summary>
+ Creates input/output handles that directly mutate an input IMutatable
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.InOut.convertedValidated``3(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``1},Gjallarhorn.ValidationModule.ValidationCollector{``2}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a simple input handle which pipes from the signal to conversion, to user, validates to output
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.InOut.validated``2(Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``1}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a simple input handle which pipes from the signal to user, validates to output
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.InOut.converted``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a simple input handle which pipes from the signal to conversion, to user, to output
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.InOut.create``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a simple input handle which pipes from the signal to user, to output
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.IOModule.InOut">
+<summary>
+ Creates input/output handles
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.Report.convertedValidated``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``1},Gjallarhorn.ValidationModule.ValidationCollector{``1}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a report which validates and updates when the signal updates and uses a mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.Report.validated``1(Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``0}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a report which validates and updates when the signal updates
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.Report.converted``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a report which updates when the signal updates and uses a mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Interaction.IOModule.Report.create``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a simple report which updates when the signal updates
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.IOModule.Report">
+<summary>
+ Creates reporting handles
+</summary>
+</member>
+<member name="T:Gjallarhorn.Interaction.IOModule">
+<summary>
+ Creates IO handles for use with Gjallarhorn adapters, like Gjallarhorn.Bindable
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.ObservableExtensions.ToSignal``1(System.IObservable{``0},``0)">
+<summary>
+ Convert from an observable and an initial value to a signal
+</summary>
+</member>
+<member name="T:Gjallarhorn.Linq.ObservableExtensions">
+<summary>
+ Extension methods for working with Observables from C# using a LINQ inspired API    
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Where``1(Gjallarhorn.ISignal{``0},System.Func{``0,System.Boolean},``0)">
+<summary>
+ Perform a filter from one signal to another based on a predicate.
+ The defaultValue is used to initialize the output signal if the input doesn&apos;t match the predicate
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Where``1(Gjallarhorn.ISignal{``0},System.Func{``0,System.Boolean})">
+<summary>
+ Perform a filter from one signal to another based on a predicate.
+ This will raise an exception if the input value does not match the predicate when created.
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.When``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Filters the signal by using a separate bool signal
+ The resulting signal always begins with the input value.
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.When``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{System.Boolean},``0)">
+<summary>
+ Filters the signal by using a separate bool signal
+ If the condition&apos;s Value is initially false, the resulting signal begins with the provided defaultValue.
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.SubscribeAndUpdate``2(Gjallarhorn.ISignal{``0},Gjallarhorn.IMutatable{``1},System.Func{``1,``0,``1})">
+<summary>
+ Create a subscription to the changes of a signal which copies its value upon change into a mutable via a stepping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Subscribe``1(Gjallarhorn.ISignal{``0},System.Action{``0})">
+<summary>
+ Create a subscription to the changes of a signal which calls the provided function upon each change
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.SelectMany``3(Gjallarhorn.ISignal{``0},System.Func{``0,Gjallarhorn.ISignal{``1}},System.Func{``0,``1,``2})">
+<summary>
+ Perform a projection from a signal, typically only used for query syntax
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.SelectMany``2(Gjallarhorn.ISignal{``0},System.Func{``0,Gjallarhorn.ISignal{``1}})">
+<summary>
+ Perform a projection from a signal, typically only used for query syntax
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.SelectAsync``2(Gjallarhorn.ISignal{``0},``1,Gjallarhorn.Helpers.IdleTracker,System.Func{``0,System.Threading.Tasks.Task{``1}})">
+<summary>
+ Perform an asynchronous mapping from one signal to another, tracking execution via an IdleTracker
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.SelectAsync``2(Gjallarhorn.ISignal{``0},``1,System.Func{``0,System.Threading.Tasks.Task{``1}})">
+<summary>
+ Perform an asynchronous mapping from one signal to another
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Select``2(Gjallarhorn.ISignal{``0},System.Func{``0,``1})">
+<summary>
+ Perform a mapping from one signal to another
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Or(Gjallarhorn.ISignal{System.Boolean},Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Creates a signal on two bools that is true if either input is true
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.ObserveOn``1(Gjallarhorn.ISignal{``0},System.Threading.SynchronizationContext)">
+<summary>
+ Creates a signal that schedules on a synchronization context
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.NotEqual``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates a signal on two values that is true if both inputs are not equal
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Not(Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Creates a signal over a bool value that negates the input
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Merge``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``0})">
+<summary>
+ Merges two signals into a single signal.  The value from the second signal is used as the initial value of the result
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Equal``1(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates a signal on two values that is true if both inputs are equal
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.CopyTo``1(Gjallarhorn.ISignal{``0},Gjallarhorn.IMutatable{``0})">
+<summary>
+ Create a subscription to the changes of a signal which copies its value upon change into a mutable
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.Cached``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Create a cached signal over a provider
+ &lt;remarks&gt;
+ This will not hold a reference to the provider, and will allow it to be garbage collected.
+ As such, it caches the &quot;last valid&quot; state of the signal locally.
+ &lt;/remarks&gt;
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.SignalExtensions.And(Gjallarhorn.ISignal{System.Boolean},Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Creates a signal on two bools that is true if both inputs are true
+</summary>
+</member>
+<member name="T:Gjallarhorn.Linq.SignalExtensions">
+<summary>
+ Extension methods for working with Signals from C# using a LINQ inspired API    
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.FromConstant``1(``0)">
+<summary>
+ Create a signal (which never notifies) given a constant value
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``11(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6},Gjallarhorn.ISignal{``7},Gjallarhorn.ISignal{``8},Gjallarhorn.ISignal{``9},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``10(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6},Gjallarhorn.ISignal{``7},Gjallarhorn.ISignal{``8},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``9(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6},Gjallarhorn.ISignal{``7},System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``8(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},Gjallarhorn.ISignal{``6},System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``7(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},Gjallarhorn.ISignal{``5},System.Func{``0,``1,``2,``3,``4,``5,``6})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``6(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},Gjallarhorn.ISignal{``4},System.Func{``0,``1,``2,``3,``4,``5})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``5(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},Gjallarhorn.ISignal{``3},System.Func{``0,``1,``2,``3,``4})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``4(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},Gjallarhorn.ISignal{``2},System.Func{``0,``1,``2,``3})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Signal.Combine``3(Gjallarhorn.ISignal{``0},Gjallarhorn.ISignal{``1},System.Func{``0,``1,``2})">
+<summary>
+ Combines signals using a specified mapping function
+</summary>
+</member>
+<member name="T:Gjallarhorn.Linq.Signal">
+<summary>
+ Functions for working with Signals from C#
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Mutable.Update``1(Gjallarhorn.IMutatable{``0},System.Func{``0,``0})">
+<summary>
+ Update a mutable given a stepping function
+</summary>
+</member>
+<member name="M:Gjallarhorn.Linq.Mutable.Create``1(``0)">
+<summary>
+ Create a mutable given an initial value
+</summary>
+</member>
+<member name="T:Gjallarhorn.Linq.Mutable">
+<summary>
+ Functions for working with Mutables from C#
+</summary>
+</member>
+</members>
+</doc>

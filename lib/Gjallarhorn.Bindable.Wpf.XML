@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Gjallarhorn.Bindable.Wpf</name></assembly>
+<members>
+<member name="T:Gjallarhorn.Wpf.BindingSourceTypeDescriptorProvider">
+<summary>
+ [omit]
+ Internal type used to allow dynamic binding sources to be generated.        
+</summary>
+</member>
+<member name="M:Gjallarhorn.Wpf.Framework.RunApplication``3(Gjallarhorn.Bindable.Framework.INavigator{``0,``1,``2},Gjallarhorn.Bindable.Framework.ApplicationCore{``0,``1,``2})">
+<summary>
+ Run an application given an Application generator, Window generator, and other required information
+</summary>
+</member>
+<member name="T:Gjallarhorn.Wpf.Framework">
+<summary>
+ WPF Specific implementation of the Application Framework
+</summary>
+</member>
+<member name="M:Gjallarhorn.Wpf.UIFactory`3.Create(Gjallarhorn.Bindable.Framework.ApplicationCore{`0,`1,`2})">
+<summary>
+ Create the specific UI element given the application
+</summary>
+</member>
+<member name="T:Gjallarhorn.Wpf.UIFactory`3">
+<summary>
+ Generates the UI, with proper binding contexts installed
+</summary>
+</member>
+<member name="M:Gjallarhorn.Wpf.Platform.Install(System.Boolean)">
+<summary>
+ Installs WPF targets for binding into Gjallarhorn
+</summary>
+</member>
+<member name="T:Gjallarhorn.Wpf.Platform">
+<summary>
+ Platform installation
+</summary>
+</member>
+</members>
+</doc>

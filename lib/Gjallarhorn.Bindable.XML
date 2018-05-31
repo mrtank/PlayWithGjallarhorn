@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Gjallarhorn.Bindable</name></assembly>
+<members>
+<member name="T:Gjallarhorn.Bindable.SignalCommand">
+<summary>
+ Command type which uses an ISignal&lt;bool&gt; to track whether it can execute, and implements ISignal&lt;DateTime&gt;, where each execute passes DateTime.UtcNow on execution
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.ParameterCommand`1.HandleExecute(System.Object)">
+<summary>
+ Used to process the command itself
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.ParameterCommand`1">
+<summary>
+ Command type which uses an ISignal&lt;bool&gt; to track whether it can execute, and implements IObservable&lt;&apos;a&gt; 
+ with the command parameter each time the command updates.
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.ITrackingCommand`1">
+<summary>
+ An ICommand which acts as an observable over changes to the value.  This is frequently the current timestamp of the command.
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.BoundSignal`1">
+<summary>
+ An ISignal&lt;&apos;a&gt; bound to a named property on a source. 
+ This uses reflection, and INotifyPropertyChanged to update the signal as needed.
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Executor`2.Executing(System.Boolean)">
+<summary>
+ Used to watch our execution status
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Executor`2.Executing">
+<summary>
+ Used to watch our execution status
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Executor`2.Subscription(`0)">
+<summary>
+ The subscription used for 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Executor`2.Stop">
+<summary>
+ Attempt to stop the operation
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Executor`2.Start">
+<summary>
+ Attempt to start the operation
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Executor`2">
+<summary>
+ Manages the execution of an operation that produces messages to be dispatched.
+ Constructed from a startup function and (optionally) a subscription which returns a bool for whether we should execute on model changes
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Dispatcher`1.DispatchAsync(Microsoft.FSharp.Control.FSharpAsync{`0})">
+<summary>
+ Trigger our message to be dispatched
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Dispatcher`1.Dispatch(`0)">
+<summary>
+ Trigger our message to be dispatched
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Dispatcher`1">
+<summary>
+ Allows dispatching of a message via an Observable
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Dispatch`1">
+<summary>
+ Represents a Dispatch of a single message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.IComponent`3.Install(Microsoft.FSharp.Core.FSharpFunc{`1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{`0})">
+<summary>
+ The actual function which performs the operation of installing the component to a binding source
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.IComponent`3">
+<summary>
+ A component takes a BindingSource and a Signal for a model and returns a list of observable messages
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.ObservableBindingSource`1.OutputValue(`0)">
+<summary>
+ Outputs a value through it&apos;s observable implementation
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.ObservableBindingSource`1.OutputObservables``1(Microsoft.FSharp.Collections.FSharpList{System.IObservable{`0}})">
+<summary>
+ Outputs values by subscribing to changes on a list of observables
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.ObservableBindingSource`1.OutputObservable``1(System.IObservable{`0})">
+<summary>
+ Outputs values by subscribing to changes on an observable
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.ObservableBindingSource`1">
+<summary>
+ Base class for binding sources, used by platform specific libraries to share implementation details
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.BindingSource.Valid">
+<summary>
+ An ISignal&lt;bool&gt; used to track the current valid state
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.BindingSource.OperationExecuting">
+<summary>
+ Value used to notify signal that an asynchronous operation is executing
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.BindingSource.IsValid">
+<summary>
+ True when the current value is valid.  Can be used in bindings
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.BindingSource.IdleTracker">
+<summary>
+ Value used to notify signal that an asynchronous operation is executing, as well as schedule that operations should execute    
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.BindingSource.Idle">
+<summary>
+ Value used to notify the front end that we&apos;re idle
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.TrackValidator(System.String,Gjallarhorn.ISignal{Gjallarhorn.ValidationResult})">
+<summary>
+ Track changes on an observable of validation results to raise proper validation events, initialized with a starting validation result
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.TrackObservable``1(System.String,System.IObservable{``0})">
+<summary>
+ Track changes on an observable to raise property changed events
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.TrackInput``2(System.String,Gjallarhorn.Interaction.Report{``0,``1})">
+<summary>
+ Track an Input type
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.TrackInOut``3(System.String,Gjallarhorn.Interaction.InOut{``0,``1})">
+<summary>
+ Track an InOut type
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.TrackDirect``1(System.String,Gjallarhorn.Interaction.Direct{``0})">
+<summary>
+ Track a Direct binding type
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.TrackComponent``3(System.String,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.IComponent{``0,``1,``2},Gjallarhorn.ISignal{``0})">
+<summary>
+ Track a component in the view, given a signal representing the model and a name for binding
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.RaisePropertyChanged(System.String)">
+<summary>
+ Trigger the PropertyChanged event for a specific property
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.FilterValid``1(Gjallarhorn.ISignal{``0})">
+<summary>
+ Filter a signal to only output when we&apos;re valid
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.CreateObservableBindingSource``1">
+<summary>
+ Create a typed observable binding source
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.ConstantToView``1(``0,System.String)">
+<summary>
+ Add a readonly binding source for a constant value with a given name    
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.AddReadWriteProperty``1(System.String,System.Func{``0},System.Action{``0})">
+<summary>
+ Adds a read and write property, specified by name, getter, and setter, to the binding source
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.AddReadOnlyProperty``1(System.String,System.Func{``0})">
+<summary>
+ Adds a read only property, specified by name and getter, to the binding source
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSource.AddDisposable(System.IDisposable)">
+<summary>
+ Adds a disposable to track
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.BindingSource">
+<summary>
+ Base class of binding sources
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.VmCmd`1">
+<summary>
+ Design time command implementation for ViewModel specifications
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.BindingSourceFactory.Value">
+<summary>
+ Retrieves the binding source
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindingSourceFactory.Generate">
+<summary>
+ Implemented by subclasses to generate a binding source
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.BindingSourceFactory">
+<summary>
+ Type used for building a binding source from a View&apos;s context
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.NameFromQuotations.nameof(Microsoft.FSharp.Quotations.FSharpExpr)">
+<summary>
+ Get the name of a quotation
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.NameFromQuotations">
+<summary>
+ Provides helpers to get the name of a property from a quotation
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.CommandModule.createParamEnabled``1">
+<summary>
+ Create a parameterized command which is always enabled
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.CommandModule.createEnabled">
+<summary>
+ Create a command which is always enabled
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.CommandModule.createParam``1(Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Create a parameterized command with an optional enabling source, provided as an ISignal&lt;bool&gt;
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.CommandModule.create(Gjallarhorn.ISignal{System.Boolean})">
+<summary>
+ Create a command with an optional enabling source, provided as an ISignal&lt;bool&gt;
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.CommandModule">
+<summary>
+ Core module for creating and using ICommand implementations
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.SelfUpdatingComponent`3.Gjallarhorn-Bindable-IComponent`3-Install(Microsoft.FSharp.Core.FSharpFunc{`1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{`0})">
+<summary>
+ The actual function which performs the operation of installing the component to a binding source
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Component.SelfUpdatingComponent`3">
+<summary>
+ A component takes a BindingSource and a Signal for a model and returns a list of observable messages
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Component.Component`3">
+<summary>
+ A component takes a BindingSource and a Signal for a model and returns a list of observable messages
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Component.MsgMapComponent`4">
+<summary>
+ Component which bubbles up message requests
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Component.NavMapComponent`4">
+<summary>
+ Component which bubbles up navigation requests
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.withSubscription``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{``0}}}},Gjallarhorn.Bindable.IComponent{``1,``2,``0})">
+<summary>
+ Add a subscription to a component
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.suppressNavigation``4(Gjallarhorn.Bindable.IComponent{``0,``1,``3})">
+<summary>
+ Wrap a component with a suppressed navigation dispatcher
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.withMappedMessages``4(Microsoft.FSharp.Core.FSharpFunc{``2,``3},Gjallarhorn.Bindable.IComponent{``0,``1,``2})">
+<summary>
+ Wrap a component with a message mapper
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.withMappedNavigation``4(Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpOption{``2}},Gjallarhorn.Bindable.IComponent{``0,``1,``3})">
+<summary>
+ Wrap a component with a navigation dispatch mapper
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.toSelfUpdating``3(Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},Gjallarhorn.Bindable.IComponent{``0,``1,``2})">
+<summary>
+ Convert a component to a self updating component
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.fromExplicit``3(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.Bindable.BindingSource,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ISignal{``0},Microsoft.FSharp.Collections.FSharpList{System.IObservable{``2}}}}})">
+<summary>
+ Create a component from explicit binding generators
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Component.create``3(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.Bindable.BindingSource,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ISignal{``0},Microsoft.FSharp.Core.FSharpOption{System.IObservable{``2}}}}}})">
+<summary>
+ Create a component from a &quot;new API&quot; style of binding list
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Component">
+<summary>
+ Routines for constructing and working with Components
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Vm.cmd``1(``0)">
+<summary>
+ Create a VmCmd (ICommand) for a VM type via a supplied Message
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Vm">
+<summary>
+ Utilities for generation of ViewModel types and instances
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.toNav``3(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.Bindable.BindingSource,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ISignal{``0},Microsoft.FSharp.Core.FSharpOption{System.IObservable{``1}}}}},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates an ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.toExplicit``3(Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0},Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.Bindable.BindingSource,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ISignal{``0},Microsoft.FSharp.Core.FSharpOption{System.IObservable{``2}}}}}})">
+<summary>
+ Convert from new API to explicit form
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.collection``6(Microsoft.FSharp.Core.FSharpFunc{``0,``4},Gjallarhorn.Bindable.IComponent{``3,``1,``5},Microsoft.FSharp.Core.FSharpFunc{System.Tuple{``5,``3},``2},Microsoft.FSharp.Quotations.FSharpExpr{``4},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Bind a collection as a one-way property, acting as a reducer for messages from the individual components of the collection
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.comp``5(Microsoft.FSharp.Core.FSharpFunc{``0,``3},Gjallarhorn.Bindable.IComponent{``3,``1,``4},Microsoft.FSharp.Core.FSharpFunc{System.Tuple{``4,``3},``2},Microsoft.FSharp.Quotations.FSharpExpr{``3},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Bind a component as a two-way property, acting as a reducer for messages from the component
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.cmdParamIf``4(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},Microsoft.FSharp.Core.FSharpFunc{``2,``3},Microsoft.FSharp.Quotations.FSharpExpr{Gjallarhorn.Bindable.VmCmd{``3}},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates a parameterized ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.cmdIf``3(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},Microsoft.FSharp.Quotations.FSharpExpr{Gjallarhorn.Bindable.VmCmd{``2}},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates an ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.cmdParam``4(Microsoft.FSharp.Core.FSharpFunc{``2,``3},Microsoft.FSharp.Quotations.FSharpExpr{Gjallarhorn.Bindable.VmCmd{``3}},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates a parameterized ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.cmd``3(Microsoft.FSharp.Quotations.FSharpExpr{Gjallarhorn.Bindable.VmCmd{``2}},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Creates an ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.twoWayValidated``4(Microsoft.FSharp.Core.FSharpFunc{``0,``2},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``2},Gjallarhorn.ValidationModule.ValidationCollector{``2}},Microsoft.FSharp.Core.FSharpFunc{``2,``3},Microsoft.FSharp.Quotations.FSharpExpr{``2},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a two way property to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.twoWay``4(Microsoft.FSharp.Core.FSharpFunc{``0,``2},Microsoft.FSharp.Core.FSharpFunc{``2,``3},Microsoft.FSharp.Quotations.FSharpExpr{``2},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a two way property to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.oneWayValidated``4(Microsoft.FSharp.Core.FSharpFunc{``0,``2},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``2},Gjallarhorn.ValidationModule.ValidationCollector{``2}},Microsoft.FSharp.Quotations.FSharpExpr{``2},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a watched signal (one way validated property) to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.self``3(Microsoft.FSharp.Quotations.FSharpExpr{Gjallarhorn.ISignal{``0}},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a watched signal that is our entire model to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.oneWay``4(Microsoft.FSharp.Core.FSharpFunc{``0,``2},Microsoft.FSharp.Quotations.FSharpExpr{``2},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.BindingSource,Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a watched signal (one way property) to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.createSource">
+<summary>
+ Create a binding source for the installed platform        
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.createObservableSource``1">
+<summary>
+ Create a binding subject for the installed platform        
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Collections.oneWay``4(Gjallarhorn.Bindable.BindingSource,System.String,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},Gjallarhorn.ISignal{``1},Gjallarhorn.Bindable.IComponent{``2,``0,``3})">
+<summary>
+ Add a collection bound to the view
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.BindModule.Collections">
+<summary>
+ Submodule providing API for explicit binding generation of collections
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createMessageParamChecked``2(System.String,Gjallarhorn.ISignal{System.Boolean},Microsoft.FSharp.Core.FSharpFunc{``0,``1},Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates a checked ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createMessageParam``2(System.String,Microsoft.FSharp.Core.FSharpFunc{``0,``1},Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates an ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createMessageCommandChecked``1(System.String,Gjallarhorn.ISignal{System.Boolean},``0,Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates a checked ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createMessageCommand``1(System.String,``0,Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates an ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createCommandParamChecked``1(System.String,Gjallarhorn.ISignal{System.Boolean},Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates a checked ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createCommandParam``1(System.String,Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates an ICommand (one way property) to a binding source by name which outputs a specific message
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createCommandChecked(System.String,Gjallarhorn.ISignal{System.Boolean},Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates a checked ICommand (one way property) to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.createCommand(System.String,Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Creates an ICommand (one way property) to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.componentOneWay``3(Gjallarhorn.Bindable.BindingSource,System.String,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.IComponent{``0,``1,``2},Gjallarhorn.ISignal{``0})">
+<summary>
+ Bind a component to the given name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.constant``1(System.String,``0,Gjallarhorn.Bindable.BindingSource)">
+<summary>
+ Add a constant value (one way property) to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.toViewValidated``1(Gjallarhorn.Bindable.BindingSource,System.String,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``0}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a watched signal (one way property) to a binding source by name with validation
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.oneWay``1(Gjallarhorn.Bindable.BindingSource,System.String,Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a watched signal (one way property) to a binding source by name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.memberToFromView``2(Gjallarhorn.Bindable.BindingSource,Microsoft.FSharp.Quotations.FSharpExpr,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``0}},Gjallarhorn.ISignal{``1})">
+<summary>
+ Add a binding to a source for a signal for editing with a given property expression and validation, and returns a signal of the user edits
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.twoWayMutableConvertedValidated``2(Gjallarhorn.Bindable.BindingSource,System.String,Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``1},Gjallarhorn.ValidationModule.ValidationCollector{``0}},Gjallarhorn.IMutatable{``0})">
+<summary>
+ Add a mutable as an editor with validation, bound to a specific name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.twoWayMutableValidated``1(Gjallarhorn.Bindable.BindingSource,System.String,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``0}},Gjallarhorn.IMutatable{``0})">
+<summary>
+ Add a mutable as an editor with validation, bound to a specific name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.twoWayMutable``1(Gjallarhorn.Bindable.BindingSource,System.String,Gjallarhorn.IMutatable{``0})">
+<summary>
+ Add a mutable as an editor, bound to a specific name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.twoWayConvertedValidated``3(Gjallarhorn.Bindable.BindingSource,System.String,Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``1},Gjallarhorn.ValidationModule.ValidationCollector{``2}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a signal as an editor with validation, bound to a specific name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.twoWayValidated``2(Gjallarhorn.Bindable.BindingSource,System.String,Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.ValidationModule.ValidationCollector{``0},Gjallarhorn.ValidationModule.ValidationCollector{``1}},Gjallarhorn.ISignal{``0})">
+<summary>
+ Add a signal as an editor with validation, bound to a specific name
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Explicit.twoWay``1(Gjallarhorn.Bindable.BindingSource,System.String,Gjallarhorn.ISignal{``0})">
+<summary>
+ Bind a signal to the binding source using the specified name
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.BindModule.Explicit">
+<summary>
+ Submodule providing API for explicit binding generation from names and signals instead of model/viewmodel
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Implementation.getCreateObservableBindingSourceFunction``1">
+<summary>
+ Retrieves the platform specific creation function 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Implementation.getCreateBindingSourceFunction">
+<summary>
+ Retrieves the platform specific creation function 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.BindModule.Implementation.installCreationFunction(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,System.Object},Microsoft.FSharp.Core.FSharpFunc{System.Type,System.Object})">
+<summary>
+ Installs a platform specific binding source creation functions
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.BindModule.Implementation">
+<summary>
+ Internal module used to manage the actual construction of binding sources
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.BindModule">
+<summary>
+ Functions to work with binding sources     
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Internal.IValueHolder.ReadOnly">
+<summary>
+ True if this represents a readonly binding
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Internal.IValueHolder.SetValue(System.Object)">
+<summary>
+ Set a boxed value
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Internal.IValueHolder.GetValue">
+<summary>
+ Get a boxed value
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Internal.IValueHolder">
+<summary>
+ Internal type used for tracking values by platform specific binding sources
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Internal.ValueHolder.readOnly``1(System.Func{``0})">
+<summary>
+ Create a read-only value holder from a delegate
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Internal.ValueHolder.readWrite``1(System.Func{``0},System.Action{``0})">
+<summary>
+ Create a read-write value holder from delegates
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Internal.ValueHolder">
+<summary>
+ Contains routines for creating value holders
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Nav.suppress``2(``0)">
+<summary>
+ Suppress all navigation messages from a child component to the parent
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Nav.bubble``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Create a mapper to bubble from a child navigation to a parent navigation
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Nav.empty``2(Gjallarhorn.Bindable.Framework.ApplicationCore{``0,Gjallarhorn.Bindable.Nav.SimpleNavigation{``1},``1},Gjallarhorn.Bindable.Nav.SimpleNavigation{``1})">
+<summary>
+ A predefined, typed navigation dispatch which does nothing
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Nav">
+<summary>
+ Routines for working with Navigation
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Framework.ApplicationSpecification`3.Render">
+<summary>
+ The platform specific render function
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Framework.ApplicationSpecification`3.Core">
+<summary>
+ The application core
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Framework.ApplicationSpecification`3.Model">
+<summary>
+ The model generator function from the core application
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Framework.ApplicationSpecification`3.Binding">
+<summary>
+ The binding function from the core application
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.ApplicationSpecification`3.Update(`2)">
+<summary>
+ The update function from the core application
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Framework.ApplicationSpecification`3">
+<summary>
+ Full specification required to run an application
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Framework.CreateDataContext`1">
+<summary>
+ Alias for a function to create a data context
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Framework.ApplicationCore`3.UpdateLog">
+<summary>
+ An stream that reports all updates as original model, message, new model
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Framework.ApplicationCore`3.Model">
+<summary>
+ The current model as a signal
+</summary>
+</member>
+<member name="P:Gjallarhorn.Bindable.Framework.ApplicationCore`3.Binding">
+<summary>
+ The function which binds the model to the view
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.ApplicationCore`3.UpdateAsync(`2)">
+<summary>
+ Push an update message asynchronously to the model
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.ApplicationCore`3.Update(`2)">
+<summary>
+ Push an update message to the model
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.ApplicationCore`3.TrampolineNavigationDispatch(`1)">
+<summary>
+ Used to dispatch new navigation requests asynchronously  
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.ApplicationCore`3.Navigation(`1)">
+<summary>
+ The navigation dispatcher for pumping messages
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.ApplicationCore`3.InstallContext(System.Threading.SynchronizationContext)">
+<summary>
+ Install the proper synchronization context for navigation operations
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.ApplicationCore`3.AddLogger(Microsoft.FSharp.Core.FSharpFunc{`0,Microsoft.FSharp.Core.FSharpFunc{`2,Microsoft.FSharp.Core.FSharpFunc{`0,Microsoft.FSharp.Core.Unit}}})">
+<summary>
+ Add a logger to this application
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Framework.ApplicationCore`3">
+<summary>
+ The core information required for an application 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.Framework.runApplication``3(Gjallarhorn.Bindable.Framework.ApplicationSpecification{``0,``1,``2})">
+<summary>
+ Run an application given the full ApplicationSpecification            
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.Framework.withLogger``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit}}},Gjallarhorn.Bindable.Framework.ApplicationCore{``0,``2,``1})">
+<summary>
+ Adds a logger function 
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.Framework.withExecutor``3(Gjallarhorn.Bindable.Executor{``0,``1},Gjallarhorn.Bindable.Framework.ApplicationCore{``0,``2,``1})">
+<summary>
+ Add an execution tracker to this application
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.Framework.withNavigation``3(System.IObservable{``0},Gjallarhorn.Bindable.Framework.ApplicationCore{``1,``0,``2})">
+<summary>
+ Add a dispatch operation from an arbitrary observable to pump navigation requests into the application
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.Framework.withDispatcher``3(System.IObservable{``0},Gjallarhorn.Bindable.Framework.ApplicationCore{``1,``2,``0})">
+<summary>
+ Add a dispatch operation from an arbitrary observable to pump messages into the application
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.Framework.withSubscription``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},Gjallarhorn.Bindable.Framework.ApplicationCore{``0,``1,``2})">
+<summary>
+ Subscription which is called any time the model is changed. A dispatcher can be used separately to pump messages back to the application if needed
+</summary>
+</member>
+<member name="M:Gjallarhorn.Bindable.Framework.Framework.application``3(``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},Gjallarhorn.Bindable.IComponent{``0,``2,``1},Microsoft.FSharp.Core.FSharpFunc{Gjallarhorn.Bindable.Framework.ApplicationCore{``0,``2,``1},Microsoft.FSharp.Core.FSharpFunc{``2,Microsoft.FSharp.Core.Unit}})">
+<summary>
+ Build an application given an initial model, update function, and binding function
+</summary>
+</member>
+<member name="T:Gjallarhorn.Bindable.Framework.Framework">
+<summary>
+ A platform neutral application framework
+</summary>
+</member>
+</members>
+</doc>
