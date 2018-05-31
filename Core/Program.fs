@@ -9,15 +9,10 @@ open Gjallarhorn.Bindable.Framework
 module Program =
 
     type User =
-        { FirstName : string;
-          SecondName : string;
-          ID : Int64}
-
-    type SomeInfo =
-        {
-            User : User
-            SomeData : List<Int64>
-            AnotherData : List<Int64>
+        { 
+            FirstName : string;
+            SecondName : string;
+            ID : Int64 
         }
 
     type SomeNav = 
@@ -35,7 +30,7 @@ module Program =
         | _ ->
             None
 
-    let update (nav : Dispatcher<SomeNav>) (message : Model) = 
+    let update (nav : Dispatcher<SomeNav>) (message : Model) _ = 
         match message with
         | Auth user ->
             SomePage |> nav.Dispatch 
@@ -49,6 +44,13 @@ module Program =
         static member readAnother id =
             seq [ id ; 5L ]
 
+    type SomeInfo =
+        {
+            User : User
+            SomeData : List<Int64>
+            AnotherData : List<Int64>
+        }
+
     let getSomeInfo = 
         function
         | Guest -> failwith "..."
@@ -61,25 +63,52 @@ module Program =
                 AnotherData = anotherData
             }
 
-    let bindToSource _nav source (model : ISignal<Model>) : IObservable<Dispatcher<SomeNav>> list = 
-        let nothin _ =
-            new Dispatcher<SomeNav>()
+    let def = { User = { ID = -1L; FirstName = ""; SecondName = ""} ; SomeData = []; AnotherData = [] }
 
-        let variable =
-            model
-            |> Signal.map nothin
-
-        let getId model =
-            match model with
-            | Guest -> 0L
-            | Member user -> user.ID
-
-        model
-        |> Signal.map getId
-        |> Bind.Explicit.oneWay source "ID"
-
-        [ 
-            Signal.map (fun x -> x) variable
+    let showInfoComponent  = 
+        Component.create<SomeInfo, SomeNav, Model> [
+            <@ def.User @> |> Bind.oneWay (fun m -> m.User)
+            <@ def.SomeData @> |> Bind.oneWay (fun m -> m.SomeData)
+            <@ def.AnotherData @> |> Bind.oneWay (fun m -> m.AnotherData)
         ]
 
-    let applicationCore = Framework.application Model.Guest update (Component.fromExplicit bindToSource) Nav.empty
+    type AuthMessage = 
+        | TryAuthenticate of string * string
+        | Approved of User
+
+    let credentialBindings _nav source (model : ISignal<Model>) : IObservable<AuthMessage> list =  
+        let fname = Mutable.create ""
+        let sname = Mutable.create ""
+
+        Bind.Explicit.twoWayMutable source "FirstName"  fname     
+        Bind.Explicit.twoWayMutable source "SecondName" sname 
+
+        let submit = Bind.Explicit.createCommand "AuthCommand" source
+        [
+            submit |> Observable.map (fun _ -> TryAuthenticate (fname.Value, sname.Value))
+        ]
+
+    let handleAuthenticationAttempt (msg : AuthMessage) _currentModel =
+        match msg with
+        | TryAuthenticate (f,s) ->
+            async {
+                printfn "Try...%A %A" f s
+                return {ID = 0L; FirstName = f; SecondName = s} |> Approved |> Some
+            } 
+        | _ -> async { return None }
+
+    let upMapper =
+        function
+        | Approved user -> Member user
+        | _ -> failwith "..."
+
+    let credentialComponent : IComponent<Model,SomeNav,Model>  = 
+        Component.fromExplicit<Model,SomeNav,AuthMessage> credentialBindings 
+        |> Component.withSubscription handleAuthenticationAttempt
+        |> Component.withMappedMessages upMapper
+
+    let applicationCore nav = 
+        let model = Guest
+        let disp = new Dispatcher<SomeNav>()
+        Framework.application model (update disp) credentialComponent nav
+        |> Framework.withNavigation disp

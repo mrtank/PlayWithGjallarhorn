@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Gjallarhorn.Bindable\Gjallarhorn.Bindable.fsproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Gjallarhorn">
       <HintPath>..\lib\Gjallarhorn.dll</HintPath>
     </Reference>

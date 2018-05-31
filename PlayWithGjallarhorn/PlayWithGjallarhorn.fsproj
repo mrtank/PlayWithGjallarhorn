@@ -62,6 +62,7 @@
     <Resource Include="MainWindow.xaml" />
     <Resource Include="SomeInfo.xaml" />
     <Resource Include="App.xaml" />
+    <Resource Include="Auth.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
