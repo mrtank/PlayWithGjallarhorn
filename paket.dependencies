@@ -1,31 +1,7 @@
-group Main
-  source https://api.nuget.org/v3/index.json
-  framework:netstandard2
-  redirects: on
-	
-  nuget SourceLink.Fake
-  nuget FAKE
-  nuget FSharp.Formatting
-  nuget Xamarin.Forms
-  nuget FSharp.Core ~> 4.3
-  nuget Gjallarhorn >= 1.2.1
-  nuget Microsoft.Build.Utilities.Core >= 15.5
-  github fsharp/FAKE modules/Octokit/Octokit.fsx
+source https://api.nuget.org/v3/index.json
 
-
-group Test
-  source https://api.nuget.org/v3/index.json
-    framework: netcoreapp2.0
-	nuget Microsoft.NET.Test.Sdk 15.5.0 
-	nuget NUnit 3.9.0 
-	nuget NUnit3TestAdapter 3.9.0 
-	nuget NUnit.ConsoleRunner ~> 3
-	nuget FSharp.Core ~> 4.3
-  nuget Gjallarhorn >= 1.2.1
-
-group WpfSamples
-  source https://api.nuget.org/v3/index.json
-  framework: net471
-  nuget FsXaml.Wpf
-  nuget FSharp.Core ~> 4.3
-  nuget Gjallarhorn >= 1.2.1
+nuget FSharp.Core >= 4.3.4 restriction: >= net471
+nuget FsXaml.Wpf >= 3.1.6 restriction: >= net471
+nuget Gjallarhorn >= 1.2.3 restriction: >= net471
+nuget System.ValueTuple >= 4.4.0 restriction: >= net471
+nuget Gjallarhorn.Bindable.Wpf >= 1.0.0-beta7 restriction: >= net471
