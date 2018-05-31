@@ -27,11 +27,11 @@ let main _ =
         | Program.OtherPage ->
             Navigation.Page.fromComponent 
                 Auth id Program.credentialComponent id            
-        | Program.SomePage ->
+        | Program.SomePage user ->
             Navigation.Page.fromComponent 
-                SomeInfo Program.getSomeInfo Program.showInfoComponent id
+                SomeInfo (fun _ -> Program.getSomeInfo user) Program.showInfoComponent (fun x -> Program.Member x)
 
     let navigator = Navigation.singlePage App MainWin Program.OtherPage updateNavigation
     let app = Program.applicationCore navigator.Navigate
     Framework.RunApplication (navigator, app)   
-    1
+    0

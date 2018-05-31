@@ -16,7 +16,7 @@ module Program =
         }
 
     type SomeNav = 
-        | SomePage
+        | SomePage of User
         | OtherPage
 
     type Model = 
@@ -33,7 +33,7 @@ module Program =
     let update (nav : Dispatcher<SomeNav>) (message : Model) _ = 
         match message with
         | Auth user ->
-            SomePage |> nav.Dispatch 
+            SomePage user |> nav.Dispatch 
             user |> Member 
         | _ -> Guest
 
@@ -51,22 +51,19 @@ module Program =
             AnotherData : List<Int64>
         }
 
-    let getSomeInfo = 
-        function
-        | Guest -> failwith "..."
-        | Member user ->
-            let someData = Queries.readSome user.ID |> Seq.toList
-            let anotherData = Queries.readAnother user.ID |> Seq.toList
-            {
-                User = user
-                SomeData = someData
-                AnotherData = anotherData
-            }
+    let getSomeInfo(user: User) = 
+        let someData = Queries.readSome user.ID |> Seq.toList
+        let anotherData = Queries.readAnother user.ID |> Seq.toList
+        {
+            User = user
+            SomeData = someData
+            AnotherData = anotherData
+        }
 
     let def = { User = { ID = -1L; FirstName = ""; SecondName = ""} ; SomeData = []; AnotherData = [] }
 
     let showInfoComponent  = 
-        Component.create<SomeInfo, SomeNav, Model> [
+        Component.create<SomeInfo, SomeNav, User> [
             <@ def.User @> |> Bind.oneWay (fun m -> m.User)
             <@ def.SomeData @> |> Bind.oneWay (fun m -> m.SomeData)
             <@ def.AnotherData @> |> Bind.oneWay (fun m -> m.AnotherData)
@@ -93,7 +90,10 @@ module Program =
         | TryAuthenticate (f,s) ->
             async {
                 printfn "Try...%A %A" f s
-                return {ID = 0L; FirstName = f; SecondName = s} |> Approved |> Some
+                if f = "aa" then
+                    return {ID = 0L; FirstName = f; SecondName = s} |> Approved |> Some
+                else
+                    return None
             } 
         | _ -> async { return None }
 
