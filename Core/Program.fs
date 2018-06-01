@@ -20,12 +20,11 @@ module Program =
         | OtherPage
 
     type Model = 
-        | Guest 
-        | Member of User
+        User option
 
     let (|Auth|_|) model =
         match model with
-        | Member user -> 
+        | Some user -> 
             Some user
         | _ ->
             None
@@ -34,8 +33,8 @@ module Program =
         match message with
         | Auth user ->
             SomePage user |> nav.Dispatch 
-            user |> Member 
-        | _ -> Guest
+            user |> Some
+        | _ -> None
 
     type Queries =
         static member readSome id =
@@ -99,7 +98,7 @@ module Program =
 
     let upMapper =
         function
-        | Approved user -> Member user
+        | Approved user -> Some user
         | _ -> failwith "..."
 
     let credentialComponent : IComponent<Model,SomeNav,Model>  = 
@@ -108,7 +107,7 @@ module Program =
         |> Component.withMappedMessages upMapper
 
     let applicationCore nav = 
-        let model = Guest
+        let model = None
         let disp = new Dispatcher<SomeNav>()
         Framework.application model (update disp) credentialComponent nav
         |> Framework.withNavigation disp
